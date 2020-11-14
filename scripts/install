@@ -131,7 +131,7 @@ ynh_script_progression --message="Configuring $app..."
 
 config=${final_path}/lufi.conf
 cp ../conf/lufi.conf.template "$config"
-ynh_replace_string --match_string="__DOMAIN__" --replace_string="$domain" --target_file="$config"
+ynh_replace_string --match_string="__DOMAIN__" --replace_string="$(echo $domain | rev | cut -d . -f1,2 | rev)" --target_file="$config"
 ynh_replace_string --match_string="__PATH__" --replace_string="$path_url" --target_file="$config"
 ynh_replace_string --match_string="__PORT__" --replace_string="$port" --target_file="$config"
 ynh_replace_string --match_string="__DB_NAME__" --replace_string="$db_name" --target_file="$config"
